@@ -1,0 +1,46 @@
+# Byte‑compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+env*/
+.venv*/
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+.*.swp
+*~
+*.bak
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+.eggs/
+
+# Environments / tools
+.pipenv/
+.pip-tools/
+.venv/
+.venv*/
+
+
+# Logs, cache, coverage
+*.log
+*.cache
+.cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+.venv/
