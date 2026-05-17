@@ -1,12 +1,7 @@
-"""
-tidal_client.py — thin wrapper around tidalapi for auth & search
-"""
 from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Optional
-
 import tidalapi
 
 SESSION_FILE = Path.home() / ".tidal_downloader_session.json"
@@ -16,8 +11,6 @@ class TidalClient:
     def __init__(self):
         self.session = tidalapi.Session()
         self._logged_in = False
-
-    # ── auth ──────────────────────────────────────────────────────────────────
 
     def login_oauth(self, url_cb, code_cb) -> bool:
         """
@@ -76,10 +69,7 @@ class TidalClient:
     def logged_in(self) -> bool:
         return self._logged_in
 
-    # ── search ────────────────────────────────────────────────────────────────
-
     def search_tracks(self, query: str, limit: int = 30) -> list:
-        """Return a list of tidalapi.Track objects."""
         if not self._logged_in:
             return []
         results = self.session.search(query, models=[tidalapi.Track], limit=limit)

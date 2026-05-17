@@ -80,7 +80,6 @@ def parse_csv(path: Path | str) -> list[SongEntry]:
     path = Path(path)
     raw = path.read_bytes()
 
-    # Detect encoding: try utf-8-sig first (handles BOM), fallback latin-1
     for enc in ("utf-8-sig", "utf-8", "latin-1"):
         try:
             text = raw.decode(enc)
@@ -98,7 +97,6 @@ def parse_csv(path: Path | str) -> list[SongEntry]:
     if reader.fieldnames is None:
         return []
 
-    # map normalised header -> original header name
     norm_headers = { _normalise_header(h): h for h in reader.fieldnames }
 
     seen: set[tuple[str, str]] = set()
@@ -108,9 +106,8 @@ def parse_csv(path: Path | str) -> list[SongEntry]:
         artist: Optional[str] = None
         title: Optional[str] = None
 
-        # Strategy 1: combined column (various header forms)
         for key in ("artist - title", "artist title", "artist", "artist_title", "artist-title", "artist/title", "song", "track", "title"):
-            nh = key  # normalized key to look for
+            nh = key 
             col = norm_headers.get(nh)
             if col:
                 val = _clean(row.get(col, ""))
