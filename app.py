@@ -683,7 +683,6 @@ class TidalApp(ctk.CTk):
     def _load_csv(self, path: Path):
         try:
             entries = parse_csv(path)
-            print(entries, "---------------")
         except Exception as exc:
             messagebox.showerror("CSV Error", f"Could not parse {path.name}:\n{exc}")
             return
